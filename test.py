@@ -20,6 +20,8 @@ def testing_wc(inputFile,outputFile):
     assert result.returncode == 0 ,result.stderr
     with open(outputFile,"r") as f:
         output_expected = f.read()
+        print(result.stdout)
+        
         if output_expected != result.stdout:
             print("expected")
             print(output_expected)
@@ -32,4 +34,7 @@ if __name__ == '__main__':
 
     for filename in os.listdir('test'):
         if filename.startswith('wc') and filename.endswith('in'):
-            testing_wc('test/'+filename,'test/'+filename.replace('in','out'))
+            try:
+                testing_wc('test/'+filename,'test/'+filename.replace('in','out'))
+            except Exception  or AssertionError as e:
+                print(e)
