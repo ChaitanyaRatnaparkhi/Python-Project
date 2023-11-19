@@ -1,0 +1,13 @@
+json = {}
+json.name = "John"
+json.age = 30
+json.address = {{}}
+json.address.city = "New York"
+json.address.zip = "10001"
+json.contacts = []
+json.contacts[0] = {}
+json.contacts[0].type = "email"
+json.contacts[0].value = "john@example.com"
+json.contacts[1] = {}
+json.contacts[1].type = "phone"
+json.contacts[1].value = "555-1234"

@@ -1,0 +1,11 @@
+json = {}
+json.students = []
+json.students[0] = {}
+json.students[0].name = "Bob"
+json.students[0].grade = 85
+json.students[1] = {}
+json.students[1].name = "Charlie"
+json.students[1].grade = 92
+json.students[2] = {}
+json.students[2].name = "David"
+json.students[2].grade = 78
