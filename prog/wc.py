@@ -49,7 +49,10 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--characters', action='store_true', help='Count only characters.')
 
     args = parser.parse_args()
+    # print(args.lines)
 
+    if not args.lines and not args.words and not args.characters:
+        args.lines,args.words,args.characters = True,True,True
     if not args.file_paths:
         content = sys.stdin.read()
         lines = content.splitlines()
@@ -63,7 +66,7 @@ if __name__ == "__main__":
         if args.characters:
             print(f"{characters:8}", end="")
         
-        print("")
+        print(" ")
 
     else:
         word_count(args.file_paths, args.lines, args.words, args.characters)
