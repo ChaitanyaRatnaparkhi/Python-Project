@@ -3,7 +3,6 @@ import os
 from difflib import Differ
 
 
-print("hi")
 
 def diff(output_expected,output_got):
     d = Differ()
@@ -13,6 +12,10 @@ def diff(output_expected,output_got):
 def run(cmd,stdin=None):
     result = subprocess.run(cmd.split(' '),capture_output=True,text=True,stdin=stdin)
     return result
+def runCat(cmd):
+    result = subprocess.Popen(cmd.split(' '),stdout=subprocess.PIPE)
+    return result
+
 
 def testing_wc(inputFile,outputFile):
     
@@ -20,8 +23,8 @@ def testing_wc(inputFile,outputFile):
     assert result.returncode == 0 ,result.stderr
     with open(outputFile,"r") as f:
         output_expected = f.read()
-        print(result.stdout)
         
+
         if output_expected != result.stdout:
             print("expected")
             print(output_expected)
@@ -29,6 +32,22 @@ def testing_wc(inputFile,outputFile):
             print(result.stdout)
             diff(output_expected,result.stdout)
     assert output_expected.rstrip() == result.stdout.rstrip()
+    print(inputFile)
+    stdinInput = runCat('cat '+inputFile)
+    
+    result = run('python prog/wc.py',stdin=stdinInput.stdout)
+    
+    with open(outputFile.replace('.out','.stdin.out'),"r") as f:
+        output_expected = f.read()
+        if output_expected != result.stdout:
+            print("expected")
+            print(output_expected)
+            print("received")
+            print(result.stdout)
+            diff(output_expected,result.stdout)
+    assert output_expected.rstrip() == result.stdout.rstrip()
+    
+
 
 if __name__ == '__main__':
 

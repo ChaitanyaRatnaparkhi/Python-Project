@@ -15,7 +15,7 @@ def word_count(file_path=None):
     words = content.split()
     characters = len(content)
 
-    print(f"\t{len(lines)}\t{len(words)}\t{characters}\t{file_path or ''}")
+    print(f"{len(lines):8}{len(words):8}{characters:8} {file_path or ''}")
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
