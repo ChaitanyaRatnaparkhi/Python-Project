@@ -68,7 +68,9 @@ Test cases for `cc.py` cover scenarios with different encryption keys, plaintext
    python test.py
 
 
-### Extension: More advanced gron: control the base-object name
+### Extensions: 
+
+1. More advanced gron: control the base-object name
 
     - Implemented --obj flag to change the base object of the json.
     
@@ -98,3 +100,25 @@ Test cases for `cc.py` cover scenarios with different encryption keys, plaintext
         o.menu.popup.menuitem[2].onclick = "CloseDoc()"
 
     ```
+2. Extension: More advanced wc: flags to control output
+   - Implemented -l flag to count the number of lines in a file.
+   - Implemented -lc flag to count the number of lines and characters in a file.
+   - Implemented -w flag to count the number of words in a file.
+   - Implemented -lcw flag to count the number of lines, words and characters in a file.
+   - Implemented -c flag to count the number of characters in a file.
+    
+    ```
+    python prog/wc.py -l  eg.json
+    output : 12 eg.json
+
+    python prog/wc.py -lc  eg.json
+    output :  12     262 eg.json
+    
+    python prog/wc.py -w  eg.json
+    output : 26 eg.json
+    
+    python prog/wc.py -lcw  eg.json
+    output : 12      26     262 eg.json
+
+    python prog/wc.py -c  eg.json
+    output : 262 eg.json
