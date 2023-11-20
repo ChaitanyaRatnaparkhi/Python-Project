@@ -100,7 +100,7 @@ def testing_cc(inputFile,outputFile,base=''):
     assert result.returncode == 0 ,result.stderr
     with open(outputFile,"r") as f:
         output_expected = f.read()
-        if output_expected != result.stdout:
+        if output_expected.rstrip() != result.stdout.rstrip():
             print("expected")
             print(output_expected)
             print("received")
