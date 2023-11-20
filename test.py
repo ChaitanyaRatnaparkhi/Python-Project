@@ -87,6 +87,44 @@ def testing_gron(inputFile,outputFile,base=''):
     passed['gron']+=1
 
 
+
+
+def testing_cc(inputFile,outputFile,base=''):
+    print(base)
+    baseflag = ''
+    if base != '':
+        baseflag = ' -f '+ base
+
+    print(baseflag)
+    result = run('python prog/cc.py'+baseflag+' '+inputFile)
+    assert result.returncode == 0 ,result.stderr
+    with open(outputFile,"r") as f:
+        output_expected = f.read()
+        if output_expected != result.stdout:
+            print("expected")
+            print(output_expected)
+            print("received")
+            print(result.stdout)
+            diff(output_expected,result.stdout)
+    assert output_expected.rstrip() == result.stdout.rstrip()
+    passed['cc']+=1
+    print(inputFile)
+    stdinInput = runCat('cat '+inputFile)
+    
+    result = run('python prog/cc.py'+baseflag,stdin=stdinInput.stdout)
+    
+    with open(outputFile,"r") as f:
+        output_expected = f.read()
+        if output_expected != result.stdout:
+            print("expected")
+            print(output_expected)
+            print("received")
+            print(result.stdout)
+            diff(output_expected,result.stdout)
+    assert output_expected.rstrip() == result.stdout.rstrip()
+    passed['cc']+=1
+
+
 passed = {'wc':0,'gron':0,'cc':0}
 failed = {'wc':0,'gron':0,'cc':0}
 
@@ -106,15 +144,20 @@ if __name__ == '__main__':
             except Exception  or AssertionError as e:
                 failed['gron']+=1
                 print(e)
-        if filename.startswith('gron') and '-' in filename:
-            temp = filename.split('-')
-            fname = temp[0]
+        
+        if filename.startswith('cc')  and filename.endswith('in'):
+           
             try:
-                testing_gron('test/'+fname+".in",'test/'+filename,filename.split('-')[1].split('.')[0])
+                testing_cc('test/'+filename,'test/'+filename.replace('in','out'),'encrypt')
             except Exception  or AssertionError as e:
-                failed['gron']+=1
+                failed['cc']+=1
                 print(e)
             
+            try:
+                testing_cc('test/'+filename.replace('in','out'),'test/'+filename,'decrypt')
+            except Exception  or AssertionError as e:
+                failed['cc']+=1
+                print(e)
 
     if failed['wc'] != 0 or  failed['cc'] != 0 or  failed['gron'] != 0:
         exit(1)
