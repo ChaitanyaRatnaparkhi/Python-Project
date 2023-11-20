@@ -32,6 +32,7 @@ def testing_wc(inputFile,outputFile):
             print(result.stdout)
             diff(output_expected,result.stdout)
     assert output_expected.rstrip() == result.stdout.rstrip()
+    passed['wc']+=1
     print(inputFile)
     stdinInput = runCat('cat '+inputFile)
     
@@ -46,8 +47,10 @@ def testing_wc(inputFile,outputFile):
             print(result.stdout)
             diff(output_expected,result.stdout)
     assert output_expected.rstrip() == result.stdout.rstrip()
+    passed['wc']+=1
     
-
+passed = {'wc':0,'gron':0,'cc':0}
+failed = {'wc':0,'gron':0,'cc':0}
 
 if __name__ == '__main__':
 
@@ -56,4 +59,10 @@ if __name__ == '__main__':
             try:
                 testing_wc('test/'+filename,'test/'+filename.replace('in','out'))
             except Exception  or AssertionError as e:
+                failed['wc']+=1
                 print(e)
+
+    
+
+    if failed['wc'] != 0 or  failed['cc'] != 0 or  failed['gron'] != 0:
+        exit(1)
