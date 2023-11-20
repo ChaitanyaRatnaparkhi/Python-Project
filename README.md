@@ -66,3 +66,35 @@ Test cases for `cc.py` cover scenarios with different encryption keys, plaintext
 
    ```bash
    python test.py
+
+
+### Extension: More advanced gron: control the base-object name
+
+    - Implemented --obj flag to change the base object of the json.
+    
+    ```
+        python prog/gron.py --obj o eg.json
+
+    ```
+
+    OUTPUT:
+    
+    ```
+
+        o = {}
+        o.menu = {{}}
+        o.menu.id = "file"
+        o.menu.value = "File"
+        o.menu.popup = {{}}
+        o.menu.popup.menuitem = []
+        o.menu.popup.menuitem[0] = {}
+        o.menu.popup.menuitem[0].value = "New"
+        o.menu.popup.menuitem[0].onclick = "CreateNewDoc()"
+        o.menu.popup.menuitem[1] = {}
+        o.menu.popup.menuitem[1].value = "Open"
+        o.menu.popup.menuitem[1].onclick = "OpenDoc()"
+        o.menu.popup.menuitem[2] = {}
+        o.menu.popup.menuitem[2].value = "Close"
+        o.menu.popup.menuitem[2].onclick = "CloseDoc()"
+
+    ```
