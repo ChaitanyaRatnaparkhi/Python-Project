@@ -118,3 +118,9 @@ if __name__ == '__main__':
 
     if failed['wc'] != 0 or  failed['cc'] != 0 or  failed['gron'] != 0:
         exit(1)
+    
+
+    print("Total test cases", sum([number for key,number in passed.items()])+sum([number for key,number in failed.items()]) )
+
+    print('passed test cases', passed)
+    print("failed test cases", failed)
