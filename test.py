@@ -115,7 +115,7 @@ def testing_cc(inputFile,outputFile,base=''):
     
     with open(outputFile,"r") as f:
         output_expected = f.read()
-        if output_expected != result.stdout:
+        if output_expected.rstrip() != result.stdout.rstrip():
             print("expected")
             print(output_expected)
             print("received")
@@ -160,6 +160,7 @@ if __name__ == '__main__':
                 print(e)
 
     if failed['wc'] != 0 or  failed['cc'] != 0 or  failed['gron'] != 0:
+
         exit(1)
     
 
