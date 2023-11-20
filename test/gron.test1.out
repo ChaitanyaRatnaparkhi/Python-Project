@@ -11,3 +11,4 @@ json.contacts[0].value = "john@example.com"
 json.contacts[1] = {}
 json.contacts[1].type = "phone"
 json.contacts[1].value = "555-1234"
+

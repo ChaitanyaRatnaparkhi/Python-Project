@@ -9,3 +9,4 @@ json.students[1].grade = 92
 json.students[2] = {}
 json.students[2].name = "David"
 json.students[2].grade = 78
+

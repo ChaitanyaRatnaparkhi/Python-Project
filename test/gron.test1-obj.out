@@ -1,0 +1,14 @@
+obj = {}
+obj.name = "John"
+obj.age = 30
+obj.address = {{}}
+obj.address.city = "New York"
+obj.address.zip = "10001"
+obj.contacts = []
+obj.contacts[0] = {}
+obj.contacts[0].type = "email"
+obj.contacts[0].value = "john@example.com"
+obj.contacts[1] = {}
+obj.contacts[1].type = "phone"
+obj.contacts[1].value = "555-1234"
+

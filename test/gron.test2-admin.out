@@ -1,0 +1,8 @@
+admin = {}
+admin.person = {{}}
+admin.person.name = "Alice"
+admin.person.age = 30
+admin.person.address = {{}}
+admin.person.address.city = "Wonderland"
+admin.person.address.zip = "12345"
+

@@ -5,3 +5,4 @@ json.person.age = 30
 json.person.address = {{}}
 json.person.address.city = "Wonderland"
 json.person.address.zip = "12345"
+
